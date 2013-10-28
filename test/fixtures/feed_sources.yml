@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Adme.ru
+  url: "http://www.adme.ru/rss/metabar"
+
+two:
+  name: Sportbox
+  url: "http://news.sportbox.ru/taxonomy/term/11731/0/feed"
