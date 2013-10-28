@@ -8,7 +8,8 @@
 * ImageMagick
 
 ### Installation
-`bundle install` then `rake db:create db:migrate db:seed`
+`bundle install`
+`rake db:create db:migrate db:seed`
 
 ### Run
 `rails s`
