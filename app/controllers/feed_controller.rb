@@ -1,6 +1,6 @@
 class FeedController < ApplicationController
   def index
-    limit = ( params[:limit] || 20 ).to_i
+    limit = ( params[:limit] || 30 ).to_i
     offset = ( params[:offset] || 0 ).to_i
 
     @feeds_count = FeedSource.count
