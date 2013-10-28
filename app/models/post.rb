@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
     { :id => id,
       :image => image,
       :title => title,
-      :href => href,
-      :source => feed_source.name }
+      :href => href }
+      # :source => feed_source.name }
   end
 end

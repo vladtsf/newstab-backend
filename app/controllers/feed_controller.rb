@@ -1,6 +1,14 @@
 class FeedController < ApplicationController
   def index
-    @feed = Post.all(:order => "created_at desc", :limit => 30).map { |post| post.public_info }
-    render json: @feed
+    limit = ( params[:limit] || 20 ).to_i
+    offset = ( params[:offset] || 0 ).to_i
+
+    @feeds_count = FeedSource.count
+
+    @feed = FeedSource.all.map do |source|
+      source.posts.order("created_at, image_width desc").offset(offset).limit limit / @feeds_count
+    end
+
+    render json: @feed.flatten.map { |post| post.public_info }
   end
 end
