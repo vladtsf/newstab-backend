@@ -11,7 +11,7 @@
 `bundle install` then `rake db:create db:migrate db:seed`
 
 ### Run
-rails s
+`rails s`
 
 ### Queue
 `sidekiq -c 5 --verbose -q feed,post`
