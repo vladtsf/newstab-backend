@@ -9,6 +9,9 @@ class FeedController < ApplicationController
       source.posts.order("created_at, image_width desc").offset(offset).limit limit / @feeds_count
     end
 
-    render json: @feed.flatten.map { |post| post.public_info }
+    render json: {  :offset => offset,
+                    :limit => limit,
+                    :total => Post.count,
+                    :items => @feed.flatten.map { |post| post.public_info } }
   end
 end
