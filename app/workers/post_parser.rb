@@ -9,11 +9,7 @@ class PostParser < ApplicationController
       @post = OpenGraph.fetch(post_url)
       @image = ImageList.new(@post.image)
 
-      if @image.columns > 500
-        @image.resize_to_fit! 500
-      else
-        @image.resize_to_fit! 200
-      end
+      @image.resize_to_fit! 0, 250
 
       Post.create(  :feed_source_id => source_id,
                     :title => @post.title,
