@@ -12,6 +12,9 @@ gem 'whenever', :require => false
 gem 'opengraph'
 gem 'rmagick'
 
+gem 'paperclip', '~> 3.0'
+gem 'aws-sdk'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 

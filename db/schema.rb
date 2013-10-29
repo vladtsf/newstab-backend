@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027235711) do
+ActiveRecord::Schema.define(version: 20131029170256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,16 @@ ActiveRecord::Schema.define(version: 20131027235711) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
-    t.string   "image_src"
     t.integer  "image_width"
     t.integer  "image_height"
     t.string   "href"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "feed_source_id"
+    t.string   "image_src_file_name"
+    t.string   "image_src_content_type"
+    t.integer  "image_src_file_size"
+    t.datetime "image_src_updated_at"
   end
 
   add_index "posts", ["feed_source_id"], name: "index_posts_on_feed_source_id", using: :btree
