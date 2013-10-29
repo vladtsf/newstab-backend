@@ -6,12 +6,18 @@ class FeedController < ApplicationController
     @feeds_count = FeedSource.count
 
     @feed = FeedSource.all.map do |source|
-      source.posts.order("created_at desc").offset(offset).limit limit / @feeds_count
+      source.posts
+        .order('index_in_feed asc')
+        .order("extract (minute from created_at) desc")
+        .offset(offset)
+        .limit limit / @feeds_count
     end
 
     render json: {  :offset => offset,
                     :limit => limit,
                     :total => Post.count,
-                    :items => @feed.flatten.sort { |a,b| -(a[:created_at]<=>b[:created_at]) }.map { |post| post.public_info } }
+                    :items => @feed
+                      .flatten
+                      .map { |post| post.public_info } }
   end
 end
