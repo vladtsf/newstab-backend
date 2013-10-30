@@ -10,7 +10,7 @@ gem 'slim'
 gem 'whenever', :require => false
 
 gem 'opengraph'
-gem 'rmagick'
+gem 'rmagick', :require => 'RMagick'
 
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk'
@@ -48,10 +48,15 @@ end
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+group :production do
+  gem 'unicorn'
+end
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+group :development do
+  gem 'capistrano', '~> 2.15.5'
+  gem 'capistrano-rails', '~> 0.0.7'
+end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
