@@ -9,7 +9,9 @@ NewstabBackend::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'application#welcome'
 
-  get 'feed.json' => 'feed#index'
+  scope '/api' do
+    get '/feed' => 'feed#index'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
