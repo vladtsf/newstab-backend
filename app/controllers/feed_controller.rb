@@ -7,8 +7,8 @@ class FeedController < ApplicationController
 
     @feed = FeedSource.all.map do |source|
       source.posts
-        .order('index_in_feed asc')
         .order("extract (minute from created_at) desc")
+        .order('index_in_feed asc')
         .offset(offset)
         .limit limit / @feeds_count
     end

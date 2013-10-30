@@ -15,7 +15,7 @@ class PostParser < ApplicationController
       else
         @image_file = Tempfile.new "#{ (Time.now.to_f * 1000 ).floor }.jpg"
 
-        @image.resize_to_fit! 0, 250
+        @image.resize_to_fit! 256
         @image.write @image_file.path
 
         Post.create(  :feed_source_id => source_id,
