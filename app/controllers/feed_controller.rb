@@ -5,19 +5,14 @@ class FeedController < ApplicationController
 
     @feeds_count = FeedSource.count
 
-    @feed = FeedSource.all.map do |source|
-      source.posts
-        .select('*, floor(extract (epoch from created_at) / 60) as batch_time')
-        .order('batch_time desc, index_in_feed asc')
-        .offset(offset)
-        .limit limit / @feeds_count
-    end
+    @feed = Post
+      .order('floor(extract (epoch from created_at) / 60) desc, index_in_feed asc')
+      .offset(offset)
+      .limit limit / @feeds_count
 
     render json: {  :offset => offset,
                     :limit => limit,
                     :total => Post.count,
-                    :items => @feed
-                      .flatten
-                      .map { |post| post.public_info } }
+                    :items => @feed.map { |post| post.public_info } }
   end
 end
