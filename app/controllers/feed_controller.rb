@@ -8,7 +8,7 @@ class FeedController < ApplicationController
     @feed = Post
       .order('floor(extract (epoch from created_at) / 60) desc, index_in_feed asc')
       .offset(offset)
-      .limit limit / @feeds_count
+      .limit limit
 
     render json: {  :offset => offset,
                     :limit => limit,
