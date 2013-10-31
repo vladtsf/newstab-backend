@@ -14,11 +14,11 @@ set :deploy_via, :remote_cache
 set :git_enable_submodules, 0
 set :keep_releases, 3
 set :use_sudo, false
+set :unicorn_pid, 'tmp/pids/unicorn.pid'
 
 role :web, "146.185.159.31"                          # Your HTTP server, Apache/etc
 role :app, "146.185.159.31"                          # This may be the same as your `Web` server
 role :db,  "146.185.159.31", :primary => true # This is where Rails migrations will run
-
 
 role :app, "146.185.159.31"                          # This may be the same as your `Web` server
 role :db,  "146.185.159.31", :primary => true # This is where Rails migrations will run
@@ -26,6 +26,7 @@ role :db,  "146.185.159.31", :primary => true # This is where Rails migrations w
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 default_run_options[:shell] = '/bin/bash --login'
+logger.level = Logger::MAX_LEVEL
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
