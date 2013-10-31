@@ -1,3 +1,5 @@
+requre "RMagick"
+
 class PostParser < ApplicationController
   include Sidekiq::Worker
   include Magick
