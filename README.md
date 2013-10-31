@@ -19,13 +19,13 @@ rake db:create db:migrate db:seed
 ### Queue
 `sidekiq -c 5 --verbose -q feed,post`
 
-### Scheduler
-`whenever`
-
 ### Deployment
 
 #### setup environment
 `cap deploy:setup`
+
+### Hands on feeds parse
+`cap feeds:parse`
 
 #### reload nginx
 `cap nginx:reload`
