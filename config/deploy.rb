@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'capistrano-unicorn'
 
 set :application, 'newstab'
 set :user, 'rails'
@@ -32,10 +33,24 @@ after "deploy:restart", "deploy:cleanup"
 # these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
+namespace :deploy do
+  desc "Zero-downtime restart of Unicorn"
+  task :restart, "unicorn:restart", :except => { :no_release => true } do
+    # run "kill -s USR2 `cat #{shared_path}/pids/unicorn.pid`"
+  end
+
+  desc "Start unicorn"
+  task :start, "unicorn:start", :except => { :no_release => true } do
+    # run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D -E production"
+  end
+
+  desc "Stop unicorn"
+  task :stop, "unicorn:stop", :except => { :no_release => true } do
+    # run "kill -s QUIT `cat #{shared_path}/pids/unicorn.pid`"
+  end
 #   task :start do ; end
 #   task :stop do ; end
 #   task :restart, :roles => :app, :except => { :no_release => true } do
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
-# end
+end

@@ -40,6 +40,8 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-rails (0.0.7)
       capistrano
+    capistrano-unicorn (0.2.0)
+      capistrano (< 3.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     chronic (0.10.2)
@@ -183,6 +185,7 @@ DEPENDENCIES
   aws-sdk
   capistrano (~> 2.15.5)
   capistrano-rails (~> 0.0.7)
+  capistrano-unicorn
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails

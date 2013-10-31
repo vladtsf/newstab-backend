@@ -56,6 +56,7 @@ end
 group :development do
   gem 'capistrano', '~> 2.15.5'
   gem 'capistrano-rails', '~> 0.0.7'
+  gem 'capistrano-unicorn', :require => false
 end
 
 # Use debugger
