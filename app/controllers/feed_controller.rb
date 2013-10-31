@@ -6,7 +6,7 @@ class FeedController < ApplicationController
     @feeds_count = FeedSource.count
 
     @feed = Post
-      .order('floor(extract (epoch from created_at) / 60) desc, index_in_feed asc')
+      .order('floor(extract (epoch from created_at) / 180) desc, index_in_feed asc')
       .offset(offset)
       .limit limit
 
