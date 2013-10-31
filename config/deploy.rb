@@ -14,6 +14,7 @@ set :repository, 'git@github.com:vtsvang/newstab-backend.git'
 set :scm, :git
 set :branch, 'master'
 set :rais_env, 'production'
+set :whenever_command, "bundle exec whenever"
 
 set :deploy_to, '/var/u/apps/newstab'
 set :deploy_via, :remote_cache
