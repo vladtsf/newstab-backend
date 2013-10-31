@@ -10,8 +10,8 @@ class Post < ActiveRecord::Base
     { :id => id,
       :image => image,
       :title => title,
-      :index_in_feed => index_in_feed,
-      :created_at =>  created_at,
+      # :index_in_feed => index_in_feed,
+      # :created_at =>  created_at,
       # :source => feed_source.name,
       :href => href }
   end
