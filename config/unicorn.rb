@@ -3,7 +3,7 @@ rails_env = ENV['RAILS_ENV'] || 'production'
 puts ENV['RAILS_PATH']
 
 # 16 workers and 1 master
-worker_processes (rails_env == 'production' ? 4 : 2)
+worker_processes (rails_env == 'production' ? 2 : 2)
 
 # Load rails+github.git into the master before forking workers
 # for super-fast worker spawn times
