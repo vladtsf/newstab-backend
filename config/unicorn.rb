@@ -20,9 +20,7 @@ timeout 30
 pid "/tmp/unicorn_newstab.pid"
 
 # Listen on a Unix data socket
-listen "146.185.159.31:3000"
-
-# listen 'tmp/pids/unicorn.sock', :backlog => 2048
+listen "/tmp/unicorn_newstab.sock", :backlog => 64
 
 before_fork do |server, worker|
   ##

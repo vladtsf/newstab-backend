@@ -2,9 +2,13 @@ require 'bundler/capistrano'
 require 'capistrano-unicorn'
 require 'sidekiq/capistrano'
 require 'capistrano/shared_file'
+require 'capistrano/nginx/tasks'
 
 set :application, 'newstab'
+set :server_name, 'newstab.ru'
+set :sudo_user, 'rails'
 set :user, 'rails'
+set :app_port, 80
 set :repository, 'git@github.com:vtsvang/newstab-backend.git'
 set :scm, :git
 set :branch, 'master'
@@ -29,6 +33,9 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 default_run_options[:shell] = '/bin/bash --login'
 logger.level = Logger::MAX_LEVEL
+
+# Nginx
+after "deploy:setup", "nginx:setup", "nginx:reload"
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
