@@ -1,4 +1,4 @@
-requre "RMagick"
+require "RMagick"
 
 class PostParser < ApplicationController
   include Sidekiq::Worker
