@@ -6,7 +6,7 @@ require 'capistrano/nginx/tasks'
 require "whenever/capistrano"
 
 set :application, 'newstab'
-set :server_name, 'newstab.ru'
+set :server_name, 'thenewstab.ru'
 set :sudo_user, 'rails'
 set :user, 'rails'
 set :app_port, 80
