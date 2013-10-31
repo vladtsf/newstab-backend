@@ -1,6 +1,6 @@
 ---
 :concurrency: 3
-:pidfile: /tmp/sidekiq_newstab.pid
+:pidfile: tmp/pids/sidekiq.pid
 :logfile: log/sidekiq.log
 :queues:
   - [post, 10]
