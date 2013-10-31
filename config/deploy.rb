@@ -50,11 +50,6 @@ after  "deploy:stop", "unicorn:stop"
 after  "deploy:start",  "unicorn:start"
 before "deploy:restart",  "unicorn:restart"
 
-# Sidekiq
-after  "deploy:stop", "sidekiq:stop"
-after  "deploy:start",  "sidekiq:start"
-before "deploy:restart",  "sidekiq:restart"
-
 namespace :feeds do
   desc "Run feeds parse rake task"
   task :parse do
