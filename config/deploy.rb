@@ -3,6 +3,7 @@ require 'capistrano-unicorn'
 require 'sidekiq/capistrano'
 require 'capistrano/shared_file'
 require 'capistrano/nginx/tasks'
+require "whenever/capistrano"
 
 set :application, 'newstab'
 set :server_name, 'newstab.ru'
