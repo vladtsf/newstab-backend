@@ -1,6 +1,7 @@
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
 require 'sidekiq/capistrano'
+require 'capistrano/shared_file'
 
 set :application, 'newstab'
 set :user, 'rails'
@@ -15,6 +16,7 @@ set :git_enable_submodules, 0
 set :keep_releases, 3
 set :use_sudo, false
 set :unicorn_pid, 'tmp/pids/unicorn.pid'
+set :shared_files, %w(config/s3.yml)
 
 role :web, "146.185.159.31"                          # Your HTTP server, Apache/etc
 role :app, "146.185.159.31"                          # This may be the same as your `Web` server
@@ -43,6 +45,13 @@ before "deploy:restart",  "unicorn:restart"
 after  "deploy:stop", "sidekiq:stop"
 after  "deploy:start",  "sidekiq:start"
 before "deploy:restart",  "sidekiq:restart"
+
+namespace :feeds do
+  desc "Run feeds parse rake task"
+  task :parse do
+    run("cd #{deploy_to}/current; /usr/bin/env rake feeds:parse RAILS_ENV=#{rails_env}")
+  end
+end
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do

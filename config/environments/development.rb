@@ -4,11 +4,7 @@ NewstabBackend::Application.configure do
   # paperclip
   config.paperclip_defaults = {
     :storage => :s3,
-    :s3_credentials => {
-      :bucket => 'newstab-development',
-      :access_key_id => 'AKIAJG6YHNWYNDC5XHNA',
-      :secret_access_key => '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'
-    }
+    :s3_credentials => YAML.load_file("#{Rails.root}/config/s3.yml")[Rails.env]
   }
 
   # In the development environment your application's code is reloaded on
