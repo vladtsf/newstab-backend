@@ -15,7 +15,7 @@ set :deploy_via, :remote_cache
 set :git_enable_submodules, 0
 set :keep_releases, 3
 set :use_sudo, false
-set :unicorn_pid, 'tmp/pids/unicorn.pid'
+set :unicorn_pid, '/tmp/unicorn_newstab.pid'
 set :shared_files, %w(config/s3.yml)
 
 role :web, "146.185.159.31"                          # Your HTTP server, Apache/etc

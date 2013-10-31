@@ -17,7 +17,7 @@ stdout_path "log/unicorn.log"
 timeout 30
 
 # Set master PID location
-pid "tmp/pids/unicorn.pid"
+pid "/tmp/unicorn_newstab.pid"
 
 # Listen on a Unix data socket
 listen "146.185.159.31:3000"
