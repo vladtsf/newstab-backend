@@ -20,7 +20,7 @@ timeout 30
 pid "tmp/pids/unicorn.pid"
 
 # Listen on a Unix data socket
-listen "0.0.0.0:3000"
+listen "146.185.159.31:3000"
 
 # listen 'tmp/pids/unicorn.sock', :backlog => 2048
 
