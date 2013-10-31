@@ -9,6 +9,10 @@ worker_processes (rails_env == 'production' ? 4 : 2)
 # for super-fast worker spawn times
 preload_app true
 
+# Log everything to one file
+stderr_path "log/unicorn.log"
+stdout_path "log/unicorn.log"
+
 # Restart any workers that haven't responded in 30 seconds
 timeout 30
 
