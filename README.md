@@ -24,7 +24,7 @@ rake db:create db:migrate db:seed
 #### setup environment
 `cap deploy:setup`
 
-### Hands on feeds parse
+#### Hands on feeds parse
 `cap feeds:parse`
 
 #### reload nginx
