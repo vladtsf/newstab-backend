@@ -1,5 +1,6 @@
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
+require 'sidekiq/capistrano'
 
 set :application, 'newstab'
 set :user, 'rails'
@@ -32,9 +33,15 @@ after "deploy:restart", "deploy:cleanup"
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
-after  "deploy:stop",        "unicorn:stop"
-after  "deploy:start",       "unicorn:start"
-before "deploy:restart",     "unicorn:restart"
+# Unicorn
+after  "deploy:stop", "unicorn:stop"
+after  "deploy:start",  "unicorn:start"
+before "deploy:restart",  "unicorn:restart"
+
+# Sidekiq
+after  "deploy:stop", "sidekiq:stop"
+after  "deploy:start",  "sidekiq:start"
+before "deploy:restart",  "sidekiq:restart"
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do

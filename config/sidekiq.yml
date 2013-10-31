@@ -1,0 +1,10 @@
+---
+:concurrency: 3
+:pidfile: tmp/pids/sidekiq.pid
+:logfile: log/sidekiq.log
+:queues:
+  - [post, 10]
+  - [feed, 2]
+  - [stg_xyz_default_queue, 3]
+production:
+  :concurrency: 3
