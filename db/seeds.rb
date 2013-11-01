@@ -10,5 +10,6 @@ FeedSource.create([
   {name:"Adme.ru", url: "http://www.adme.ru/rss/metabar"},
   {name: "Lenta.ru", url: "http://lenta.ru/rss"},
   {name: "Sportbox", url: "http://news.sportbox.ru/taxonomy/term/11731/0/feed"},
-  {name: "Цукерберг Позвонит!", url: "http://feeds.feedburner.com/siliconrus"}
+  {name: "Цукерберг Позвонит!", url: "http://feeds.feedburner.com/siliconrus"},
+  {name: "Habrahabr", url: "http://habrahabr.ru/rss/hubs/"}
 ])
