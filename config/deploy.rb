@@ -56,26 +56,3 @@ namespace :feeds do
     run("cd #{deploy_to}/current; /usr/bin/env rake feeds:parse RAILS_ENV=#{rails_env}")
   end
 end
-
-# If you are using Passenger mod_rails uncomment this:
-namespace :deploy do
-  desc "Zero-downtime restart of Unicorn"
-  task :restart, :except => { :no_release => true } do
-    # run "kill -s USR2 `cat #{shared_path}/pids/unicorn.pid`"
-  end
-
-  desc "Start unicorn"
-  task :start, :except => { :no_release => true } do
-    # run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D -E production"
-  end
-
-  desc "Stop unicorn"
-  task :stop, :except => { :no_release => true } do
-    # run "kill -s QUIT `cat #{shared_path}/pids/unicorn.pid`"
-  end
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-end
