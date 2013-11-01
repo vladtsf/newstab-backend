@@ -5,4 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-FeedSource.create([{name:"Adme.ru", url: "http://www.adme.ru/rss/metabar"}, {name: "Sportbox", url: "http://news.sportbox.ru/taxonomy/term/11731/0/feed"}])
+FeedSource.delete_all
+FeedSource.create([
+  {name:"Adme.ru", url: "http://www.adme.ru/rss/metabar"},
+  {name: "Lenta.ru", url: "http://lenta.ru/rss"},
+  {name: "Sportbox", url: "http://news.sportbox.ru/taxonomy/term/11731/0/feed"}
+])

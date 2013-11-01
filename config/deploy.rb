@@ -50,6 +50,13 @@ after  "deploy:stop", "unicorn:stop"
 after  "deploy:start",  "unicorn:start"
 before "deploy:restart",  "unicorn:restart"
 
+namespace :deploy do
+  desc "Run seeds.rb"
+  task :seed do
+    run("cd #{deploy_to}/current; /usr/bin/env rake db:seed RAILS_ENV=#{rails_env}")
+  end
+end
+
 namespace :feeds do
   desc "Run feeds parse rake task"
   task :parse do
