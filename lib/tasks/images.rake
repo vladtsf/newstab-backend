@@ -7,7 +7,7 @@ namespace :images do
     @images = JSON.parse File.read '/tmp/images.json'
 
     @images.each_with_index do |image, index|
-      puts "#{index} #{image.id} #{image.image_src}"
+      puts "#{index} #{image['id']} #{image['image_src']}"
       begin
         post = Post.find(image['id'])
         post.image_src = image['image_src']
