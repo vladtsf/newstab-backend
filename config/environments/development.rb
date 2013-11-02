@@ -3,7 +3,7 @@ NewstabBackend::Application.configure do
 
   # paperclip
   config.paperclip_defaults = {
-    :storage => :s3,
+    :storage => :filesystem,
     :s3_credentials => YAML.load_file("#{Rails.root}/config/s3.yml")[Rails.env]
   }
 
