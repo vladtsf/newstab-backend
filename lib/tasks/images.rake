@@ -6,10 +6,15 @@ namespace :images do
   task :reload => :environment do
     @images = JSON.parse File.read '/tmp/images.json'
 
-    @images.each do |image|
-      post = Post.find(image['id'])
-      post.image_src = image['image_src']
-      post.save
+    @images.each_with_index do |image, index|
+      puts "#{index} #{image.id} #{image.image_src}"
+      begin
+        post = Post.find(image['id'])
+        post.image_src = image['image_src']
+        post.save
+      rescue Exception => e
+        puts e.to_s
+      end
     end
   end
 end
