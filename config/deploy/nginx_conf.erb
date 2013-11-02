@@ -18,6 +18,12 @@ server {
     add_header Cache-Control public;
   }
 
+  location /system/ {
+    expires 1y;
+    add_header Pragma public;
+    add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+  }
+
   location @<%= application %> {
     expires 1m;
     add_header Pragma public;
