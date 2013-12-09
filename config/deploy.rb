@@ -36,6 +36,8 @@ ssh_options[:forward_agent] = true
 default_run_options[:shell] = '/bin/bash --login'
 logger.level = Logger::MAX_LEVEL
 
+before "deploy", "deploy:shared_file:create_symlink"
+
 # Nginx
 after "deploy:setup", "nginx:setup", "nginx:reload"
 
