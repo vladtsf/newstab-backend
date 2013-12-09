@@ -5,7 +5,7 @@ namespace :db do
     created_at = Time.now
     db_config = Rails.configuration.database_configuration[Rails.env]
     backups_config = YAML.load_file("#{Rails.root}/config/backups.yml")[Rails.env].symbolize_keys
-    remote_file_name = "dumps/#{created_at}.dump"
+    remote_file_name = "dumps/#{created_at}-#{Rails.env}.dump"
 
     dump_file = Tempfile.new "#{created_at.to_i}.dump"
 
@@ -19,16 +19,15 @@ namespace :db do
 
 
     # upload new dump
-    # objects[remote_file_name].write dump_file
+    objects[remote_file_name].write dump_file
     puts "-- uploaded file #{remote_file_name} to S3"
-
 
     # delete old files
     objects.with_prefix('dumps/').each do |file|
       next if file.key == "dumps/"
 
       # when was created file
-      file_created_at = File.basename(file.key, ".dump").to_time
+      file_created_at = File.basename(file.key, ".dump").gsub(/-\w+$/, "").to_time
 
       if created_at - file_created_at > 5.days
         file.delete
