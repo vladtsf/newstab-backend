@@ -1,0 +1,6 @@
+development:
+  s3_bucket: newstab
+test:
+  s3_bucket: newstab
+production:
+  s3_bucket: newstab

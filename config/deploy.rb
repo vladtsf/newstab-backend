@@ -22,7 +22,7 @@ set :git_enable_submodules, 0
 set :keep_releases, 3
 set :use_sudo, false
 set :unicorn_pid, '/tmp/unicorn_newstab.pid'
-set :shared_files, %w(config/s3.yml)
+set :shared_files, %w(config/aws.yml, config/backups.yml)
 
 role :web, "146.185.159.31"                          # Your HTTP server, Apache/etc
 role :app, "146.185.159.31"                          # This may be the same as your `Web` server
@@ -49,6 +49,13 @@ after "deploy:restart", "deploy:cleanup"
 after  "deploy:stop", "unicorn:stop"
 after  "deploy:start",  "unicorn:start"
 before "deploy:restart",  "unicorn:restart"
+
+namespace :db do
+  desc "Backup database"
+  task :backup do
+    run "cd #{deploy_to}/current; /usr/bin/env rake db:backup RAILS_ENV=#{rails_env}"
+  end
+end
 
 namespace :deploy do
   desc "Run seeds.rb"
