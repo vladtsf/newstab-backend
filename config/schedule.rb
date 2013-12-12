@@ -12,7 +12,7 @@ every 10.minutes do
   rake "feeds:parse"
 end
 
-every 6.hours do
+every 3.hours do
   rake "db:backup"
 end
 
