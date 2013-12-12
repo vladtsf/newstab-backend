@@ -6,12 +6,12 @@ class DumpDatabase < ApplicationController
     created_at = Time.now
     db_config = Rails.configuration.database_configuration[Rails.env]
     backups_config = YAML.load_file("#{Rails.root}/config/backups.yml")[Rails.env].symbolize_keys
-    remote_file_name = "dumps/#{created_at}-#{Rails.env}.dump"
+    remote_file_name = "dumps/#{created_at}-#{Rails.env}.dump.bz2"
 
-    dump_file = Tempfile.new "#{created_at.to_i}.dump"
+    dump_file = Tempfile.new "#{created_at.to_i}.dump.bz2"
 
     # run pg_dump
-    `pg_dump #{db_config['host'] ? "-h" + db_config['host'] : ""} -U #{db_config['username']} #{db_config['database']} > #{dump_file.path}`
+    `pg_dump #{db_config['host'] ? "-h" + db_config['host'] : ""} -U #{db_config['username']} #{db_config['database']} | bzip2 > #{dump_file.path}`
 
     # connect to S3
     objects = AWS::S3.new.buckets[backups_config[:s3_bucket]].objects
