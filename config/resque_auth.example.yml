@@ -1,0 +1,9 @@
+development:
+  user: resque
+  password: resque
+test:
+  user: resque
+  password: resque
+production:
+  user: resque
+  password: resque

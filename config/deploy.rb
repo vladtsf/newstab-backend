@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
-require 'sidekiq/capistrano'
+# require 'sidekiq/capistrano'
 require 'capistrano/shared_file'
 require 'capistrano/nginx/tasks'
 require 'whenever/capistrano'
@@ -22,7 +22,7 @@ set :git_enable_submodules, 0
 set :keep_releases, 3
 set :use_sudo, false
 set :unicorn_pid, '/tmp/unicorn_newstab.pid'
-set :shared_files, %w(config/aws.yml config/backups.yml)
+set :shared_files, %w(config/aws.yml config/backups.yml config/resque_auth.yml)
 
 role :web, "146.185.159.31"                          # Your HTTP server, Apache/etc
 role :app, "146.185.159.31"                          # This may be the same as your `Web` server

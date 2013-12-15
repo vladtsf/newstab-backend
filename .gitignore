@@ -9,6 +9,7 @@
 
 /config/aws.yml
 /config/backups.yml
+/config/resque_auth.yml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

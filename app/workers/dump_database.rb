@@ -1,8 +1,7 @@
-class DumpDatabase < ApplicationController
-  include Sidekiq::Worker
-  sidekiq_options queue: "dump_database", retry: false
+class DumpDatabase
+  @queue = :dump_database
 
-  def perform
+  def self.perform
     created_at = Time.now
     db_config = Rails.configuration.database_configuration[Rails.env]
     backups_config = YAML.load_file("#{Rails.root}/config/backups.yml")[Rails.env].symbolize_keys

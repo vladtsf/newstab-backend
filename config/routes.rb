@@ -2,9 +2,11 @@ NewstabBackend::Application.routes.draw do
 
   # Disable Sidekiq on production env
   # unless Rails.env == 'production'
-  require 'sidekiq/web'
-  mount Sidekiq::Web, at: '/sidekiq'
+  # require 'sidekiq/web'
+  # mount Sidekiq::Web, at: '/sidekiq'
   # end
+
+  mount Resque::Server, at: "/resque"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

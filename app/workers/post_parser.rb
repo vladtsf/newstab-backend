@@ -1,12 +1,11 @@
 require "RMagick"
 
-class PostParser < ApplicationController
-  include Sidekiq::Worker
+class PostParser
   include Magick
 
-  sidekiq_options queue: "post", retry: false
+  @queue = :post
 
-  def perform(source_id, idx, post_url)
+  def self.perform(source_id, idx, post_url)
     unless Post.find_by_href post_url
       @post = OpenGraph.fetch(post_url)
 
