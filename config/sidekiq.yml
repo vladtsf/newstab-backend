@@ -3,8 +3,8 @@
 :pidfile: tmp/pids/sidekiq.pid
 :logfile: log/sidekiq.log
 :queues:
-  - [post, 5]
-  - [feed, 10]
-  - [dump_database, 15]
+  - [post, 1]
+  - [feed, 1]
+  - [dump_database, 1]
 production:
   :concurrency: 1
