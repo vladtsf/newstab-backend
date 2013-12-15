@@ -29,7 +29,7 @@ set :shared_files, %w(config/aws.yml config/backups.yml config/resque_auth.yml)
 role :resque_worker, "thenewstab.ru"
 role :resque_scheduler, "thenewstab.ru"
 
-set :workers, { "feed, post" => 1, "dump_database" => 1 }
+set :workers, { "feed, post, dump_database" => 1 }
 
 # Uncomment this line if your workers need access to the Rails environment:
 set :resque_environment_task, true
