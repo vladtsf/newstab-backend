@@ -8,6 +8,7 @@ gem 'rails', '4.0.0'
 # gem 'slim'
 
 gem 'resque', :require => 'resque/server'
+gem "capistrano-resque", "~> 0.1.0", require: false
 
 gem 'whenever', :require => false
 

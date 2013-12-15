@@ -1,6 +1,7 @@
 require 'bundler/capistrano'
 require 'capistrano-unicorn'
 # require 'sidekiq/capistrano'
+require 'capistrano-resque'
 require 'capistrano/shared_file'
 require 'capistrano/nginx/tasks'
 require 'whenever/capistrano'
@@ -24,6 +25,15 @@ set :use_sudo, false
 set :unicorn_pid, '/tmp/unicorn_newstab.pid'
 set :shared_files, %w(config/aws.yml config/backups.yml config/resque_auth.yml)
 
+# Resque
+role :resque_worker, "thenewstab"
+role :resque_scheduler, "thenewstab"
+
+set :workers, { "feed" => 1, "post" => 3, "dump_database" => 1 }
+
+# Uncomment this line if your workers need access to the Rails environment:
+set :resque_environment_task, true
+
 role :web, "146.185.159.31"                          # Your HTTP server, Apache/etc
 role :app, "146.185.159.31"                          # This may be the same as your `Web` server
 role :db,  "146.185.159.31", :primary => true # This is where Rails migrations will run
@@ -44,6 +54,9 @@ after "deploy:setup", "nginx:setup", "nginx:reload"
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
+
+# Resque
+after "deploy:restart", "resque:restart"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
